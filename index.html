@@ -2,215 +2,201 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aswinraj J - Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="icon" href="/Images/AswinLogo.jpeg" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aswinraj J | MERN Stack Developer</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/AswinLogo.jpeg">
 </head>
 
 <body>
-  <div id="cursor"></div>
-  <div id="cursor-blur"></div>
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
 
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">Aswinraj J</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <section id="hero" class="parallax" data-speed="0.3">
-    <div id="particles-js"></div>
-    <div class="hero-content">
-      <h1></h1>
-      <p>MERN Stack Web Developer</p>
-    </div>
-  </section>
-
-  <section id="about" class="py-5">
-    <div class="container">
-      <div class="content reveal">
-        <h2>About Me</h2>
-        <p>
-          Hi, I'm Aswin, a MERN stack developer with 3+ years of experience,
-          specializing in React.js, Node.js, and MongoDB. I build advanced web
-          applications and innovative digital solutions. I also create
-          AI-generated illustrations on Fiverr and develop AI-driven tools.
-          Passionate about Automation, Investing, and Content creation, Always
-          exploring new tech, I strive to push the boundaries of innovation.
-        </p>
-        <div class="skills">
-          <div class="skill">HTML/CSS</div>
-          <div class="skill">JavaScript</div>
-          <div class="skill">React</div>
-          <div class="skill">Node.js</div>
-          <div class="skill">MongoDB</div>
-          <div class="skill">Boostrap</div>
-          <div class="skill">Generative AI</div>
-          <div class="skill">ExpressJS</div>
-          <div class="skill">Python</div>
-          <div class="skill">Git</div>
-        </div>
-        <a href="./Aswin.pdf" download class="social-button col-12 text-center my-2">Download CV</a>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/aswin-raj-829342237/" target="_blank" class="social-button">LinkedIn</a>
-          <a href="https://www.fiverr.com/s/YRD2pAN" target="_blank" class="social-button">Fiverr</a>
-          <a href="https://github.com/iamaswinhere" target="_blank" class="social-button">Github</a>
-          <a href="https://www.instagram.com/aasww.in/" target="_blank" class="social-button">Instagram</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" class="py-5"></section>
-
-  <section id="projects" class="py-5">
-    <div class="container">
-      <div class="content reveal">
-        <h2>Projects</h2>
-        <div class="project-grid">
-          <div class="project-item reveal">
-            <div class="project-image">
-              <img src="Images/Todo.png" alt="Project 1 Image" />
+    <main class="bento-container">
+        <!-- Profile Card (Span 2x2) -->
+        <article class="bento-card profile-card" data-aos="fade-up">
+            <div class="profile-content">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    Available for work
+                </div>
+                <h1>Aswinraj J</h1>
+                <p class="subtitle">MERN Stack Developer & <br>Creative Technologist</p>
+                <p class="bio">
+                    MERN stack developer with 3+ years of experience, specializing in React.js, Node.js, and MongoDB.
+                    I also create AI-generated illustrations on Fiverr and develop AI-driven tools.
+                    Passionate about Automation, Investing, and Content creation.
+                </p>
+                <div class="action-buttons">
+                    <a href="#contact" class="btn primary">Let's Talk <i class='bx bx-right-arrow-alt'></i></a>
+                    <a href="assets/Aswin.pdf" download class="btn secondary"><i class='bx bx-download'></i> CV</a>
+                </div>
             </div>
-            <h3 class="text-center">ToDo App</h3>
-            <a href="https://todo-gamma-virid.vercel.app" target="_blank" class="btn btn-primary col-12 my-2">View
-              Project</a>
-          </div>
-
-          <div class="project-item reveal">
-            <div class="project-image">
-              <img src="https://img.freepik.com/free-vector/e-commerce-flat-concept_1284-22119.jpg"
-                alt="Project 2 Image" />
+            <div class="profile-image">
+                <img src="assets/AswinLogo.jpeg" alt="Aswinraj J">
             </div>
-            <h3 class="text-center">E-commerce App</h3>
-            <a href="https://ecom-two-theta.vercel.app" target="_blank" class="btn btn-primary col-12 my-2">View
-              Project</a>
-          </div>
+        </article>
 
-          <div class="project-item reveal">
-            <div class="project-image">
-              <img
-                src="Images/a-minimalist-weather-app-logo-with-the-n_5kyVxDayRBmJUbmjaZ9cCQ_gEEHxPmOQ0KAF4rbOs98vg.jpeg"
-                alt="Project 2 Image" />
+        <!-- Socials Card -->
+        <article class="bento-card social-card" data-aos="fade-up" data-aos-delay="100">
+            <h3>Connect</h3>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/aswin-raj-829342237/" target="_blank"
+                    class="social-link linkedin"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://github.com/iamaswinhere" target="_blank" class="social-link github"><i
+                        class='bx bxl-github'></i></a>
+                <a href="https://www.instagram.com/aasww.in/" target="_blank" class="social-link instagram"><i
+                        class='bx bxl-instagram'></i></a>
+                <a href="https://www.fiverr.com/s/YRD2pAN" target="_blank" class="social-link fiverr">Fi</a>
             </div>
-            <h3 class="text-center">Weather App</h3>
-            <a href="https://weather-ra63.vercel.app/" target="_blank" class="btn btn-primary col-12 my-2">View
-              Project</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </article>
 
-
-  <section id="upcoming-projects" class="py-5">
-    <div class="container">
-      <div class="content reveal">
-        <h2>Upcoming Projects</h2>
-        <p>Stay tuned for exciting new projects.....</p>
-
-
-        <div class="project-grid">
-          <div class="project-item reveal">
-            <div class="project-image">
-              <img src="Images/synapseLearn.jpeg" alt="Project 2 Image" />
+        <!-- Tech Stack Card -->
+        <article class="bento-card stack-card" data-aos="fade-up" data-aos-delay="200">
+            <h3>Tech Stack</h3>
+            <div class="stack-scroller">
+                <div class="stack-track">
+                    <!-- Duplicated for infinite scroll effect -->
+                    <span class="tech-pill"><i class='bx bxl-react'></i> React</span>
+                    <span class="tech-pill"><i class='bx bxl-nodejs'></i> Node.js</span>
+                    <span class="tech-pill"><i class='bx bxl-mongodb'></i> MongoDB</span>
+                    <span class="tech-pill"><i class='bx bxl-javascript'></i> JavaScript</span>
+                    <span class="tech-pill"><i class='bx bxl-html5'></i> HTML5</span>
+                    <span class="tech-pill"><i class='bx bxl-css3'></i> CSS3</span>
+                    <span class="tech-pill"><i class='bx bxl-python'></i> Python</span>
+                    <span class="tech-pill"><i class='bx bxl-git'></i> Git</span>
+                    <span class="tech-pill"><i class='bx bxl-bootstrap'></i> Bootstrap</span>
+                    <span class="tech-pill">Generative AI</span>
+                    <!-- Duplicate set -->
+                    <span class="tech-pill"><i class='bx bxl-react'></i> React</span>
+                    <span class="tech-pill"><i class='bx bxl-nodejs'></i> Node.js</span>
+                    <span class="tech-pill"><i class='bx bxl-mongodb'></i> MongoDB</span>
+                    <span class="tech-pill"><i class='bx bxl-javascript'></i> JavaScript</span>
+                </div>
             </div>
-            <h3 class="text-center">Synapse Learn</h3>
-            <a href="/commingsoon.html" target="_blank" class="btn btn-primary col-12 my-2">View Project</a>
-          </div>
-        </div>
+        </article>
 
+        <!-- Stats/Location Card (Map or Time) -->
+        <article class="bento-card location-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="location-info">
+                <i class='bx bx-map'></i>
+                <span>Based in<br><strong>India</strong></span>
+            </div>
+            <div class="time-display" id="local-time">
+                00:00 AM
+            </div>
+        </article>
 
-      </div>
-    </div>
-  </section>
+        <!-- Project 1 -->
+        <article class="bento-card project-card p1" data-aos="fade-up">
+            <div class="project-info">
+                <span class="project-tag">Full Stack</span>
+                <h3>ToDo App</h3>
+                <p class="project-desc">A powerful task management tool with drag-and-drop features and local storage
+                    persistence.</p>
+                <a href="https://todo-gamma-virid.vercel.app" target="_blank" class="project-link"><i
+                        class='bx bx-link-external'></i></a>
+            </div>
+            <img src="assets/Todo.png" alt="ToDo App" class="project-bg">
+        </article>
 
+        <!-- Project 2 -->
+        <article class="bento-card project-card p2" data-aos="fade-up">
+            <div class="project-info">
+                <span class="project-tag">E-commerce</span>
+                <h3>Shop App</h3>
+                <p class="project-desc">Modern online store with cart functionality, product filtering, and payment
+                    integration.</p>
+                <a href="https://ecom-two-theta.vercel.app" target="_blank" class="project-link"><i
+                        class='bx bx-link-external'></i></a>
+            </div>
+            <img src="https://img.freepik.com/free-vector/e-commerce-flat-concept_1284-22119.jpg" alt="E-commerce"
+                class="project-bg">
+        </article>
 
-  <section id="contact" class="py-5"></section>
+        <!-- Project 3 -->
+        <article class="bento-card project-card p3" data-aos="fade-up">
+            <div class="project-info">
+                <span class="project-tag">Utility</span>
+                <h3>Weather</h3>
+                <p class="project-desc">Real-time weather tracking with location detection and 5-day forecasting.</p>
+                <a href="https://weather-ra63.vercel.app/" target="_blank" class="project-link"><i
+                        class='bx bx-link-external'></i></a>
+            </div>
+            <img src="assets/a-minimalist-weather-app-logo-with-the-n_5kyVxDayRBmJUbmjaZ9cCQ_gEEHxPmOQ0KAF4rbOs98vg.jpeg"
+                alt="Weather App" class="project-bg">
+        </article>
 
-  <section id="contact" class="py-5">
-    <div class="container">
-      <div class="content reveal">
-        <h2>Contact Me</h2>
-        <form id="contact-form">
-          <div class="mb-3">
-            <input type="text" name="name" class="form-control" placeholder="Your Name" required />
-          </div>
-          <div class="mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Your Email" required />
-          </div>
-          <div class="mb-3">
-            <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
+        <!-- Upcoming Project -->
+        <article class="bento-card project-card p4" data-aos="fade-up">
+            <div class="project-info">
+                <span class="project-tag">Coming Soon</span>
+                <h3>Synapse Learn</h3>
+                <p class="project-desc">An AI-powered learning platform revolutionizing personalized education.</p>
+                <a href="./commingsoon.html" target="_blank" class="project-link"><i class='bx bx-time-five'></i></a>
+            </div>
+            <img src="assets/synapseLearn.jpeg" alt="Synapse Learn" class="project-bg">
+        </article>
 
-  <footer class="bg-dark py-3">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <span class="text-white">Aswinraj J</span>
-      </div>
-    </div>
-  </footer>
+        <!-- Playground Card -->
+        <article class="bento-card playground-card" data-aos="fade-up">
+            <div class="playground-content">
+                <h3>Engagement</h3>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-value counter-display">0</span>
+                        <span class="stat-label">Clicks</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="time-display">0m</span>
+                        <span class="stat-label">Time Active</span>
+                    </div>
+                </div>
+            </div>
+            <div class="particles-container" id="particles"></div>
+        </article>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    (function () {
-      emailjs.init("ErylWLzyQCKNEw8pn");
-    })();
-  </script>
-  <script>
-    document
-      .getElementById("contact-form")
-      .addEventListener("submit", function (e) {
-        e.preventDefault();
+        <!-- Contact Card -->
+        <article class="bento-card contact-card" id="contact" data-aos="fade-up">
+            <h2>Let's work together</h2>
+            <p>Have a project in mind?</p>
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Your Message" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn primary submit-btn">Send Message <i class='bx bx-send'></i></button>
+            </form>
+        </article>
+    </main>
 
-        emailjs.sendForm("service_e9jz9cr", "template_mgfcf7o", this).then(
-          function () {
-            alert("Message sent successfully!");
-            console.log("Success");
-            document.getElementById("contact-form").reset();
-          },
-          function (error) {
-            console.error("FAILED...", error);
-            alert("Something went wrong. Please try again later.");
-          }
-        );
-      });
-  </script>
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("ErylWLzyQCKNEw8pn");
+        })();
+    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,179 +1,234 @@
-window.addEventListener('scroll', function() {
-    let parallax = document.querySelectorAll('.parallax');
-    let scrollPosition = window.pageYOffset;
+// Custom Cursor Logic
+const cursorDot = document.querySelector("[data-cursor-dot]");
+const cursorOutline = document.querySelector("[data-cursor-outline]");
 
-    parallax.forEach(function(element) {
-        let speed = parseFloat(element.dataset.speed) || 0.5;
-        let scale = 1 + (scrollPosition * 0.0001 * speed);
+// Magnetic Buttons
+const buttons = document.querySelectorAll(".btn, .social-link, .project-link");
+buttons.forEach((btn) => {
+    btn.addEventListener("mousemove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
 
-        element.style.transform = `translateY(${scrollPosition * speed}px) scale(${scale})`;
+        // Magnet strength
+        const strength = 10;
+
+        gsap.to(btn, {
+            x: x / strength,
+            y: y / strength,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+    });
+
+    btn.addEventListener("mouseleave", () => {
+        gsap.to(btn, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: "elastic.out(1, 0.3)"
+        });
     });
 });
 
-function reveal() {
-    let reveals = document.querySelectorAll('.reveal');
 
-    for (let i = 0; i < reveals.length; i++) {
-        let windowHeight = window.innerHeight;
-        let revealTop = reveals[i].getBoundingClientRect().top;
-        let revealPoint = 150;
+window.addEventListener("mousemove", function (e) {
+    const posX = e.clientX;
+    const posY = e.clientY;
 
-        if (revealTop < windowHeight - revealPoint) {
-            reveals[i].classList.add('active');
-        }
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+
+    cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+});
+
+// Update Time
+function updateTime() {
+    const timeDisplay = document.getElementById("local-time");
+    if (timeDisplay) {
+        const options = { hour: '2-digit', minute: '2-digit', hour12: true };
+        const timeString = new Date().toLocaleTimeString([], options);
+        timeDisplay.textContent = timeString;
     }
 }
+setInterval(updateTime, 1000);
+updateTime();
 
-window.addEventListener('scroll', reveal);
+// GSAP Animations
+gsap.registerPlugin(ScrollTrigger);
 
-function typeWriter(text, element, speed) {
-    let i = 0;
-    function typing() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(typing, speed);
+// Reveal Grid items
+gsap.utils.toArray('.bento-card').forEach((card, i) => {
+    gsap.from(card, {
+        scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: i * 0.1 // Stagger effect
+    });
+});
+
+// Horizontal Scroll for Text (if stack-scroller wasn't CSS only)
+// But we have CSS animation for stack, let's keep it lightweight.
+
+// Vanilla Tilt Init
+VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 10,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+    scale: 1.02
+});
+
+// Playground Logic & Analytics
+const playgroundCard = document.querySelector('.playground-card');
+const counterDisplay = document.querySelector('.counter-display');
+const timeDisplay = document.getElementById('time-display');
+
+// Initialize from LocalStorage
+let count = parseInt(localStorage.getItem('userClickCount')) || 0;
+let timeSpent = parseInt(localStorage.getItem('userTimeSpent')) || 0;
+
+if (counterDisplay) {
+    counterDisplay.textContent = count;
+}
+
+// Global Click Counting
+if (counterDisplay) {
+    document.addEventListener('click', (e) => {
+        count++;
+        counterDisplay.textContent = count;
+        localStorage.setItem('userClickCount', count);
+
+        // Pulse effect
+        gsap.fromTo(counterDisplay, { scale: 1.5 }, { scale: 1, duration: 0.2, ease: "elastic.out(1, 0.3)" });
+
+        // If the click is inside the playground card, trigger particles there
+        if (playgroundCard && playgroundCard.contains(e.target)) {
+            createParticle(e.clientX, e.clientY);
         }
-    }
-    typing();
+    });
 }
 
-let heroHeadline = document.querySelector('.hero-content h1');
-if (heroHeadline) {
-    typeWriter("Aswinraj J", heroHeadline, 100);
+// Time Tracking
+function formatTime(seconds) {
+    if (seconds < 60) return `${seconds}s`;
+    if (seconds < 3600) return `${Math.floor(seconds / 60)}m`;
+    return `${Math.floor(seconds / 3600)}h`;
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+if (timeDisplay) {
+    timeDisplay.textContent = formatTime(timeSpent);
+
+    setInterval(() => {
+        timeSpent++;
+        timeDisplay.textContent = formatTime(timeSpent);
+        localStorage.setItem('userTimeSpent', timeSpent);
+    }, 1000);
+}
+
+function createParticle(x, y) {
+    const particle = document.createElement('div');
+    const colors = ['#6c5ce7', '#ff7675', '#55efc4', '#ffeaa7'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    // Position relative to card if possible, but for simplicity relative to viewport with fixed pos
+    // Better: append to body or specific container. Let's use body for simpler absolute positioning or container relative.
+    // The container .particles-container is in the card, so coordinates need to be relative to the card.
+
+    // Let's use a simpler "confetti" visual inside the card for now to avoid complexity with coordinates.
+    // Just a burst inside the card center.
+
+    const cardRect = playgroundCard.getBoundingClientRect();
+    const relX = x - cardRect.left;
+    const relY = y - cardRect.top;
+
+    const size = Math.random() * 8 + 4;
+
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.background = color;
+    particle.style.position = 'absolute';
+    particle.style.left = `${relX}px`;
+    particle.style.top = `${relY}px`;
+    particle.style.borderRadius = '50%';
+    particle.style.pointerEvents = 'none';
+
+    const container = document.getElementById('particles');
+    container.appendChild(particle);
+
+    // Animate away
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = Math.random() * 50 + 20;
+    const tx = Math.cos(angle) * velocity;
+    const ty = Math.sin(angle) * velocity;
+
+    gsap.to(particle, {
+        x: tx,
+        y: ty,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        onComplete: () => particle.remove()
+    });
+}
+
+
+
+// EmailJS Form Submission
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const btn = contactForm.querySelector('button');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = 'Sending...';
+
+        emailjs.sendForm('service_e9jz9cr', 'template_mgfcf7o', this)
+            .then(function () {
+                btn.innerHTML = 'Sent! <i class="bx bx-check"></i>';
+                btn.style.backgroundColor = '#4ade80'; // Success green
+                contactForm.reset();
+
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.backgroundColor = '';
+                }, 3000);
+            }, function (error) {
+                console.error('FAILED...', error);
+                btn.innerHTML = 'Error <i class="bx bx-error"></i>';
+                btn.style.backgroundColor = '#ef4444'; // Error red
+
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.backgroundColor = '';
+                }, 3000);
+            });
     });
-});
-
-function isMouseInside(x, y, element) {
-    const rect = element.getBoundingClientRect();
-    return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
 }
 
-function handleCursorActivation(element, activate, state) {
-    if (activate) {
-        element.addEventListener('mouseenter', () => {
-            cursor.classList.add('active');
-            if (state) {
-                cursor.classList.add(state);
-            }
-        });
-        element.addEventListener('mouseleave', () => {
-            cursor.classList.remove('active');
-            if (state) {
-                cursor.classList.remove(state);
-            }
-        });
-    }
-}
 
-const interactiveElements = document.querySelectorAll('a, button');
-const projectItems = document.querySelectorAll('.project-item');
-const socialButtons = document.querySelectorAll('.social-button');
-
-interactiveElements.forEach((element) => {
-    handleCursorActivation(element, true);
-});
-
-projectItems.forEach((element) => {
-    handleCursorActivation(element, true, 'hover-project');
-});
-
-socialButtons.forEach((element) => {
-    handleCursorActivation(element, true, 'hover-social');
-});
-
-particlesJS('particles-js', {
-    "particles": {
-        "number": {
-            "value": 100,
-            "density": {
-                "enable": true,
-                "value_area": 800
-            }
-        },
-        "color": {
-            "value": "#555"
-        },
-        "shape": {
-            "type": "circle",
-            "stroke": {
-                "width": 0,
-                "color": "#000000"
-            },
-        },
-        "opacity": {
-            "value": 0.5,
-            "random": true,
-            "anim": {
-                "enable": false,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-            }
-        },
-        "size": {
-            "value": 3,
-            "random": true,
-            "anim": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0.1,
-                "sync": false
-            }
-        },
-        "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#333",
-            "opacity": 0.4,
-            "width": 1
-        },
-        "move": {
-            "enable": true,
-            "speed": 3,
-            "direction": "none",
-            "random": true,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
+// Make Project Cards Clickable
+document.querySelectorAll('.project-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (e) => {
+        // Prevent conflict if clicking the specific button (though button is inside, so it might block or bubble)
+        // If the target is the link itself or inside it, normal behavior handles it.
+        // But if we click elsewhere in the card:
+        if (!e.target.closest('.project-link')) {
+            const link = card.querySelector('.project-link');
+            if (link) {
+                window.open(link.href, link.target || '_blank');
             }
         }
-    },
-    "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-            "onhover": {
-                "enable": true,
-                "mode": "repulse"
-            },
-            "onclick": {
-                "enable": true,
-                "mode": "push"
-            },
-            "resize": true
-        },
-        "modes": {
-            "repulse": {
-                "distance": 100,
-                "duration": 0.4
-            },
-            "push": {
-                "particles_nb": 4
-            }
-        }
-    },
-    "retina_detect": true
+    });
 });
