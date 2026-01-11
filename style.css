@@ -610,6 +610,12 @@ body {
     .profile-content h1 {
         font-size: 2.5rem;
     }
+
+    /* Hide custom cursor on mobile/tablet */
+    .cursor-dot,
+    .cursor-outline {
+        display: none;
+    }
 }
 
 @media (max-width: 600px) {
@@ -617,52 +623,103 @@ body {
         grid-template-columns: 1fr;
         padding: 1rem;
         gap: 1.5rem;
-        /* More space on mobile for better separation */
     }
 
     .bento-card {
         min-height: auto;
-        /* Allow content to dictate height */
         padding: 1.5rem;
     }
 
+    /* Force single column layout */
     .profile-card,
     .social-card,
     .stack-card,
     .location-card,
     .project-card,
     .contact-card,
-    .p1 {
+    .p1,
+    .playground-card {
         grid-column: span 1 !important;
         grid-row: span 1 !important;
     }
 
+    /* Profile Card Optimization */
     .profile-card {
         display: flex;
         flex-direction: column-reverse;
-        /* Image on top? No, keep it standard or maybe below */
+        text-align: center;
+        align-items: center;
+        gap: 1.5rem;
+        padding-top: 3rem;
+        /* Space for image if absolute, or just flow */
+    }
+
+    .profile-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .action-buttons {
+        justify-content: center;
+        width: 100%;
     }
 
     .profile-image {
         position: relative;
         bottom: auto;
         right: auto;
-        width: 120px;
-        height: 120px;
-        margin-bottom: 0rem;
-        margin-top: -1rem;
-        margin-left: auto;
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
         opacity: 1;
-        /* Visible on mobile */
+        /* Fully visible */
         filter: none;
+        border: 2px solid var(--accent);
+        box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+        margin-bottom: 1rem;
+        transform: rotate(0);
+    }
+
+    .profile-card:hover .profile-image {
+        transform: scale(1.05);
+        /* Gentle zoom */
     }
 
     .profile-content h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .bio {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
+    /* Project Cards Mobile */
+    .project-card {
+        min-height: 240px;
+        /* Ensure height for bg */
+        justify-content: flex-end;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .project-card:hover {
+        transform: scale(1.02);
+        /* Subtle scale on mobile */
     }
 
     .btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+        width: 100%;
+        /* Full width buttons on mobile */
+        justify-content: center;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
     }
 }

@@ -193,7 +193,7 @@ if (contactForm) {
         const originalText = btn.innerHTML;
         btn.innerHTML = 'Sending...';
 
-        emailjs.sendForm('service_e9jz9cr', 'template_mgfcf7o', this)
+        emailjs.sendForm('service_8c1dh5l', 'template_yg1eq5z', this)
             .then(function () {
                 btn.innerHTML = 'Sent! <i class="bx bx-check"></i>';
                 btn.style.backgroundColor = '#4ade80'; // Success green
