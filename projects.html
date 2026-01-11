@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Aswinraj J</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/AswinLogo.jpeg">
+</head>
+
+<body>
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <!-- Page Transition Overlay -->
+    <div class="transition-overlay"></div>
+
+    <nav class="projects-nav">
+        <a href="index.html" class="back-btn magnetic-btn"><i class='bx bx-left-arrow-alt'></i> Back to Home</a>
+    </nav>
+
+    <main class="projects-container">
+        <header class="projects-header" data-aos="fade-down">
+            <h1>Selected Works</h1>
+            <p>A collection of some of my favorite projects.</p>
+        </header>
+
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <article class="bento-card project-card-large p-large" data-aos="fade-up">
+                <div class="project-image-container">
+                    <img src="assets/Todo.png" alt="ToDo App" loading="lazy">
+                    <div class="overlay"></div>
+                </div>
+                <div class="project-content">
+                    <span class="project-tag">Full Stack</span>
+                    <h3>ToDo App</h3>
+                    <p>A powerful task management tool with drag-and-drop features and local storage persistence. Built
+                        to optimize daily productivity.</p>
+                    <div class="tech-stack-mini">
+                        <span>React</span><span>Node.js</span><span>MongoDB</span>
+                    </div>
+                    <a href="https://todo-gamma-virid.vercel.app" target="_blank" class="btn primary ">View
+                        Project <i class='bx bx-link-external'></i></a>
+                </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="bento-card project-card-large p-large" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-image-container">
+                    <img src="https://img.freepik.com/free-vector/e-commerce-flat-concept_1284-22119.jpg" alt="Shop App"
+                        loading="lazy">
+                    <div class="overlay"></div>
+                </div>
+                <div class="project-content">
+                    <span class="project-tag">E-commerce</span>
+                    <h3>Shop App</h3>
+                    <p>Modern online store with cart functionality, product filtering, and payment integration. A
+                        seamless shopping experience.</p>
+                    <div class="tech-stack-mini">
+                        <span>React</span><span>Redux</span><span>Stripe</span>
+                    </div>
+                    <a href="https://ecom-two-theta.vercel.app" target="_blank" class="btn primary ">View
+                        Project <i class='bx bx-link-external'></i></a>
+                </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="bento-card project-card-large p-large" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-image-container">
+                    <img src="assets/a-minimalist-weather-app-logo-with-the-n_5kyVxDayRBmJUbmjaZ9cCQ_gEEHxPmOQ0KAF4rbOs98vg.jpeg"
+                        alt="Weather App" loading="lazy">
+                    <div class="overlay"></div>
+                </div>
+                <div class="project-content">
+                    <span class="project-tag">Utility</span>
+                    <h3>Weather App</h3>
+                    <p>Real-time weather tracking with location detection and 5-day forecasting. Beautiful
+                        visualizations of climate data.</p>
+                    <div class="tech-stack-mini">
+                        <span>API Integration</span><span>JavaScript</span><span>CSS3</span>
+                    </div>
+                    <a href="https://weather-ra63.vercel.app/" target="_blank" class="btn primary ">View
+                        Project <i class='bx bx-link-external'></i></a>
+                </div>
+            </article>
+
+            <!-- Project 4 -->
+            <article class="bento-card project-card-large p-large" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-image-container">
+                    <img src="assets/synapseLearn.jpeg" alt="Synapse Learn" loading="lazy">
+                    <div class="overlay"></div>
+                </div>
+                <div class="project-content">
+                    <span class="project-tag">Hiring</span>
+                    <h3>Synapse Learn</h3>
+                    <p>Future-ready learning platform designed to personalize education for every student using AI.</p>
+                    <div class="tech-stack-mini">
+                        <span>Next.js</span><span>AI</span><span>Tailwind</span>
+                    </div>
+                    <a href="./commingsoon.html" class="btn primary">View Details <i
+                            class='bx bx-right-arrow-alt'></i></a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+
+    <script src="config.js"></script>
+    <script src="env-loader.js"></script>
+    <script src="script.js" defer></script>
+</body>
+
+</html>

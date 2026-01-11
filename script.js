@@ -186,14 +186,56 @@ function createParticle(x, y) {
 // EmailJS Form Submission
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
+    // State to track initialization
+    let emailConfig = null;
+    let isInitialized = false;
+
+    // Function to initialize EmailJS
+    const tryInitEmailJS = () => {
+        const env = window.env || (typeof CONFIG !== 'undefined' ? CONFIG.EMAILJS : null);
+        if (typeof emailjs !== 'undefined' && env && !isInitialized) {
+            const publicKey = env.EMAILJS_PUBLIC_KEY || env.PUBLIC_KEY;
+            emailjs.init(publicKey);
+            emailConfig = env;
+            isInitialized = true;
+            console.log('EmailJS initialized successfully');
+        }
+    };
+
+    // Try init immediately, or wait for env
+    if (window.env) tryInitEmailJS();
+    window.addEventListener('env-ready', tryInitEmailJS);
+
+    // Attach listener IMMEDIATELY to prevent reload
     contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+        e.preventDefault(); // This must run synchronously!
 
         const btn = contactForm.querySelector('button');
         const originalText = btn.innerHTML;
+
+        // Verify initialization
+        if (!isInitialized || !emailConfig) {
+            // Try one last time just in case
+            tryInitEmailJS();
+
+            if (!isInitialized || !emailConfig) {
+                console.error('EmailJS not initialized. Check .env configuration.');
+                btn.innerHTML = 'Config Error';
+                btn.style.backgroundColor = '#ef4444';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.backgroundColor = '';
+                }, 2000);
+                return;
+            }
+        }
+
         btn.innerHTML = 'Sending...';
 
-        emailjs.sendForm('service_8c1dh5l', 'template_yg1eq5z', this)
+        const serviceId = emailConfig.EMAILJS_SERVICE_ID || emailConfig.SERVICE_ID;
+        const templateId = emailConfig.EMAILJS_TEMPLATE_ID || emailConfig.TEMPLATE_ID;
+
+        emailjs.sendForm(serviceId, templateId, this)
             .then(function () {
                 btn.innerHTML = 'Sent! <i class="bx bx-check"></i>';
                 btn.style.backgroundColor = '#4ade80'; // Success green
@@ -217,13 +259,13 @@ if (contactForm) {
 }
 
 
+// ... (previous code)
+
 // Make Project Cards Clickable
 document.querySelectorAll('.project-card').forEach(card => {
+    // ... (existing logic)
     card.style.cursor = 'pointer';
     card.addEventListener('click', (e) => {
-        // Prevent conflict if clicking the specific button (though button is inside, so it might block or bubble)
-        // If the target is the link itself or inside it, normal behavior handles it.
-        // But if we click elsewhere in the card:
         if (!e.target.closest('.project-link')) {
             const link = card.querySelector('.project-link');
             if (link) {
@@ -232,3 +274,54 @@ document.querySelectorAll('.project-card').forEach(card => {
         }
     });
 });
+
+/* -------------------------------------------------------------------------- */
+/*                          Page Transition Logic                             */
+/* -------------------------------------------------------------------------- */
+
+// 1. Entrance Animation (on page load)
+window.addEventListener('load', () => {
+    const overlay = document.querySelector('.transition-overlay');
+    if (overlay) {
+        gsap.to(overlay, {
+            scaleY: 0,
+            transformOrigin: "top",
+            duration: 0.8,
+            ease: "power2.inOut",
+            delay: 0.1
+        });
+    }
+});
+
+// 2. Exit Animation (link clicks)
+function transitionToPage(url) {
+    const overlay = document.querySelector('.transition-overlay');
+    if (overlay) {
+        // Set start state
+        overlay.style.transformOrigin = "bottom";
+
+        gsap.to(overlay, {
+            scaleY: 1,
+            duration: 0.6,
+            ease: "power2.inOut",
+            onComplete: () => {
+                window.location.href = url;
+            }
+        });
+    } else {
+        window.location.href = url;
+    }
+}
+
+// Attach listener to specific transition links
+document.querySelectorAll('a.transition-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = link.href;
+        // Don't transition if opening in new tab or same page anchor
+        if (link.target === '_blank' || url.includes('#')) return;
+
+        transitionToPage(url);
+    });
+});
+
