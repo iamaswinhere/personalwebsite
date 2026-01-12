@@ -275,53 +275,8 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
-/* -------------------------------------------------------------------------- */
-/*                          Page Transition Logic                             */
-/* -------------------------------------------------------------------------- */
-
 // 1. Entrance Animation (on page load)
-window.addEventListener('load', () => {
-    const overlay = document.querySelector('.transition-overlay');
-    if (overlay) {
-        gsap.to(overlay, {
-            scaleY: 0,
-            transformOrigin: "top",
-            duration: 0.8,
-            ease: "power2.inOut",
-            delay: 0.1
-        });
-    }
-});
+// Removed page transition logic
 
 // 2. Exit Animation (link clicks)
-function transitionToPage(url) {
-    const overlay = document.querySelector('.transition-overlay');
-    if (overlay) {
-        // Set start state
-        overlay.style.transformOrigin = "bottom";
-
-        gsap.to(overlay, {
-            scaleY: 1,
-            duration: 0.6,
-            ease: "power2.inOut",
-            onComplete: () => {
-                window.location.href = url;
-            }
-        });
-    } else {
-        window.location.href = url;
-    }
-}
-
-// Attach listener to specific transition links
-document.querySelectorAll('a.transition-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const url = link.href;
-        // Don't transition if opening in new tab or same page anchor
-        if (link.target === '_blank' || url.includes('#')) return;
-
-        transitionToPage(url);
-    });
-});
-
+// Removed page transition logic
